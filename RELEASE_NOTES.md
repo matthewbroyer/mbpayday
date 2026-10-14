@@ -2,6 +2,13 @@
 
 Newest first. One entry per release, in plain words a user would understand.
 
+## 1.1 · 2026-10-14
+
+- On computers, the search box, backup status and logo spacing now look exactly like the other mb apps: same size, same "Search…" text and the same "/" shortcut.
+- **Cleaner top bar on phones.** The app name no longer gets cut off ("mbpayday.onli…"). Data, the light/dark switch and Clock in are now matching square buttons, the same as in the other MB apps.
+- **Clock in shows a clock icon** (a stop icon while you're on shift). On phones it's an icon-only button; on computers it still says "Clock in" or "Clock out" with your running pay.
+- **The light/dark switch shows a sun and a moon** so it's clear what it does.
+
 ## 1.0 · 2026-10-14
 
 First release as part of the MB Suite. The earlier single-file version of mbpayday.online had no version number. Your saved shifts, paystubs, jobs and settings carry over as they are (same storage, no data migration), and backups from the earlier version still import.

@@ -21,26 +21,18 @@
 .cu-banner .cu-s{max-width:60ch}
 
 /* page bar */
-.page-bar .actions{flex-wrap:nowrap}
-.page-bar .actions .btn.primary{min-width:0}
+/* app.css gives every .actions row a 14px top margin; not in the page bar (it pushed the bar to 60px and the buttons off-center) */
+.page-bar .actions{margin-top:0}
+/* backup chip matches the bar's control height (the shared top bar resets min-height on direct children) */
+.page-bar .actions .bk-chip{min-height:var(--tb-h,36px)}
 /* the page bar names the view on desktop/tablet; the in-view h2 is for phones (and the heading outline) */
 .view-head h2{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:767px){
   .view-head h2{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal}
   /* keep the h1 for screen readers instead of display:none */
   .page-bar .page-title{display:block;position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0)}
-  .page-bar .actions{gap:6px}
   .phone-search{display:block;margin:0 0 12px}
 }
 @media (min-width:768px){.phone-search{display:none}}
 .phone-search .searchbox input{width:100%;height:var(--ctl)}
-@media (max-width:480px){
-  #dataBtn .lbl,#dataBtn .chev{display:none}
-  #dataBtn{padding:0 10px;min-width:44px}
-}
-@media (max-width:767px){.page-bar .phone-brand{min-height:44px}}
-@media (max-width:480px){
-  #headerClock .uic,#headerClock .amt{display:none}
-  #headerClock{padding:0 12px}
-}
 .store-banner{margin-left:max(var(--gutter),calc((100% - var(--page-max)) / 2 + var(--gutter)));margin-right:max(var(--gutter),calc((100% - var(--page-max)) / 2 + var(--gutter)))}

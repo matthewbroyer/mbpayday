@@ -6,7 +6,7 @@
 const KEY='workpay_local_v1';
 const THEME_KEY='mbpaystub_theme_v1';
 const K_LAST='mbpayday.lastBackup', K_FILE='mbpayday.backupFile', K_WELCOME='mbpayday.welcomed', K_TC='mbpayday.timecard', K_PROBE='mbpayday.probe';
-const APP_DOMAIN='mbpayday.online', APP_VERSION='1.0', BACKUP_FORMAT=1;
+const APP_DOMAIN='mbpayday.online', APP_VERSION='1.1', BACKUP_FORMAT=1;
 const SAMPLE_JOB='Sample job', SAMPLE_NOTE='Sample record', LEGACY_DEMO='DEMO · Sample records';
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -183,7 +183,7 @@ function render(){
  if(page==='settings')MBInstall.render();
  updateBackupUI();tick();
 }
-function updateClockButton(){const b=$('#headerClock');b.querySelector('use').setAttribute('href',state.activeShift?'#i-stop':'#i-play');$('#headerClockText').textContent=state.activeShift?'Clock out':'Clock in';$('#headerClockAmt').textContent=state.activeShift?` · ${money(shiftPay(state.activeShift).gross)}`:'';b.setAttribute('aria-label',state.activeShift?'Clock out':'Clock in')}
+function updateClockButton(){const b=$('#headerClock');b.querySelector('use').setAttribute('href',state.activeShift?'#i-stop':'#i-clock');$('#headerClockText').textContent=state.activeShift?'Clock out':'Clock in';$('#headerClockAmt').textContent=state.activeShift?` · ${money(shiftPay(state.activeShift).gross)}`:'';b.setAttribute('aria-label',state.activeShift?'Clock out':'Clock in')}
 
 /* ---------------------------------------------------------------- views */
 function renderHome(){
