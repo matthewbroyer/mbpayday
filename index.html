@@ -1,314 +1,220 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-app-short="Payday" data-app-domain="mbpayday.online">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#152c2b">
-<title>mbpayday.online — Timecard & Paycheck Tracker</title>
-<meta name="description" content="Track work hours, estimate pay and overtime, and compare paychecks. Local-first with no account required.">
-<style>
-:root{--bg:#f3f6f4;--panel:#fff;--ink:#172b2a;--muted:#687976;--line:#dfe7e3;--brand:#176b5b;--brand2:#dff4e9;--gold:#f1b84b;--red:#b93838;--shadow:0 8px 24px #173b2b0a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:#fff;color:var(--ink);font-weight:650}button:hover{filter:brightness(.98);border-color:#9db8ad}button.primary{background:var(--brand);color:#fff;border-color:var(--brand)}button.soft{background:var(--brand2);border-color:transparent;color:#155646}button.danger{color:var(--red)}button.small{padding:6px 9px;font-size:13px}.app{max-width:1250px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.brand{display:flex;gap:12px;align-items:center}.logo{width:44px;height:44px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:22px}.brand h1{font-size:21px;margin:0;letter-spacing:-.5px}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px}.nav{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:10px;height:max-content;position:sticky;top:12px}.nav button{display:flex;align-items:center;gap:11px;width:100%;text-align:left;border:0;background:transparent;margin:3px 0;font-weight:600;color:#526662}.nav button.active{background:var(--brand2);color:#155646}.nav .ico{width:22px;text-align:center}.privacy{margin:14px 8px 5px;padding-top:13px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}main{min-width:0}.pagehead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:2px 0 18px}.pagehead h2{font-size:25px;letter-spacing:-.7px;margin:0}.pagehead p{margin:5px 0 0;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow);min-width:0}.statlabel{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}.stat{font-size:27px;font-weight:750;letter-spacing:-1px;margin:8px 0 2px}.sub{font-size:12px;color:var(--muted)}.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.panel h3{margin:0 0 13px;font-size:16px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.panelhead h3{margin:0}.bigclock{font-size:36px;font-weight:780;letter-spacing:-1.2px}.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:100px;background:#edf2ef;color:#4e625c;font-size:12px;font-weight:700}.pill.green{background:var(--brand2);color:#155646}.pill.amber{background:#fff3d8;color:#8a5c09}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.fieldgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:12px;font-weight:750;color:#526662}.field input,.field select,.field textarea{width:100%;min-width:0;padding:10px 11px;border:1px solid #d7e1dc;border-radius:9px;background:#fff;color:var(--ink)}.field textarea{min-height:72px;resize:vertical}.field.full{grid-column:1/-1}.formactions{display:flex;gap:8px;justify-content:flex-end;margin-top:15px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:650px;font-size:13px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#f7faf8;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}.right{text-align:right}.empty{text-align:center;padding:30px 12px;color:var(--muted)}.muted{color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:#fff5dc;border:1px solid #f2dfaa;color:#76561a;font-size:13px;margin-bottom:14px}.goodnotice{background:var(--brand2);border-color:#c3e8d4;color:#155646}.sectiongap{margin-top:15px}.hidden{display:none!important}.progress{height:8px;background:#e9efec;border-radius:10px;overflow:hidden;margin:10px 0}.progress span{height:100%;display:block;background:var(--brand);width:0}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}.resultline{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.resultline:last-child{border:0}.resultline strong{font-variant-numeric:tabular-nums}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tabs button{font-size:13px}.tabs button.active{background:var(--ink);color:white}.footer{font-size:12px;color:var(--muted);padding:20px 0;text-align:center}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#152c2b;color:white;padding:12px 18px;border-radius:12px;box-shadow:0 8px 30px #0002;z-index:20;max-width:90vw}.divider{height:1px;background:var(--line);margin:14px 0}.hint{font-size:12px;color:var(--muted);margin-top:5px}.filebtn{position:relative;overflow:hidden}.filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.checkrow{display:flex;align-items:center;gap:8px;font-size:13px}.checkrow input{width:auto}.callout{border-left:3px solid var(--gold);padding:10px 12px;background:#fffbf0;font-size:13px;color:#725719;border-radius:0 8px 8px 0}
-html[data-theme='dark']{color-scheme:dark;--bg:#111918;--panel:#192321;--ink:#e8f0ec;--muted:#a5b5af;--line:#33423d;--brand:#69c7a6;--brand2:#203f34;--shadow:0 8px 24px #0003}html[data-theme='dark'] button{background:#202c28;color:var(--ink);border-color:var(--line)}html[data-theme='dark'] button.primary{background:var(--brand);color:#10231c}html[data-theme='dark'] button.soft,html[data-theme='dark'] .nav button.active{background:var(--brand2);color:#b7f0d6}html[data-theme='dark'] .nav button{color:#c0d0c9}html[data-theme='dark'] .field input,html[data-theme='dark'] .field select,html[data-theme='dark'] .field textarea{background:#111918;color:var(--ink);border-color:var(--line)}html[data-theme='dark'] th{background:#202c28}html[data-theme='dark'] .pill{background:#26332e;color:#c0d0c9}html[data-theme='dark'] .pill.green{background:#203f34;color:#b7f0d6}html[data-theme='dark'] .notice{background:#3b3019;border-color:#625025;color:#f5dba1}html[data-theme='dark'] .goodnotice{background:#203f34;border-color:#315f4e;color:#b7f0d6}html[data-theme='dark'] .callout{background:#302916;color:#f5dba1}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #e3a72f;outline-offset:2px}button:disabled{opacity:.55;cursor:not-allowed}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
-@media(max-width:850px){.app{padding:14px}.layout{grid-template-columns:1fr;gap:12px}.nav{position:static;display:flex;overflow:auto;gap:4px;padding:7px}.nav button{width:auto;white-space:nowrap;margin:0;padding:10px}.nav .privacy{display:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2,.twocol{grid-template-columns:1fr}.top{align-items:flex-start}.top-actions button{padding:8px}.pagehead h2{font-size:22px}}
-@media(max-width:480px){.app{padding:10px}.top{display:block}.top-actions{margin-top:12px}.cards{gap:8px}.card{padding:13px}.stat{font-size:23px}.fieldgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.pagehead{display:block}.pagehead>.actions{margin-top:10px}.nav button{font-size:12px;padding:9px}.bigclock{font-size:30px}}
-@media print{body{background:#fff}.top-actions,.nav,.actions,.no-print,button{display:none!important}.app{max-width:none;padding:0}.layout{display:block}.card,.panel{box-shadow:none;break-inside:avoid}.pagehead{margin-top:0}}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Payday | Overview</title>
+<meta name="description" content="Free timecard and paycheck tracker in your browser. Log shifts, estimate overtime and take-home pay, and check your paystubs. No account needed.">
+<link rel="canonical" href="https://mbpayday.online/">
+<meta name="theme-color" content="#BE185D">
+<meta name="color-scheme" content="light dark">
+<meta name="application-name" content="Payday">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Payday">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mbpayday.online">
+<meta property="og:title" content="mbpayday.online · Free timecard and paycheck tracker">
+<meta property="og:description" content="Clock in and out, log shifts and breaks, estimate overtime and take-home pay, and compare it with your paystubs. No account; your records stay in your browser.">
+<meta property="og:url" content="https://mbpayday.online/">
+<meta property="og:image" content="https://mbpayday.online/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="mbpayday.online: timecard and paycheck tracker, shown with sample shifts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="mbpayday.online · Free timecard and paycheck tracker">
+<meta name="twitter:description" content="Clock in and out, log shifts and breaks, estimate overtime and take-home pay, and compare it with your paystubs. No account; your records stay in your browser.">
+<meta name="twitter:image" content="https://mbpayday.online/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"mbpayday.online","alternateName":"Payday","url":"https://mbpayday.online/","applicationCategory":"BusinessApplication","operatingSystem":"Any (runs in a web browser)","description":"Free timecard and paycheck tracker in your browser. Log shifts, estimate overtime and take-home pay, and check your paystubs. No account needed.","isAccessibleForFree":true,"author":{"@type":"Person","name":"Matthew Broyer","url":"https://matthewbroyer.com/"}}</script>
+<script src="theme-boot.js"></script>
+<link rel="stylesheet" href="mb-suite-core.css">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="mb-suite-cutouts.css">
+<link rel="stylesheet" href="mb-suite-sidebar.css">
+<link rel="stylesheet" href="mb-suite-v3.css">
+<link rel="stylesheet" href="app-v3.css">
 </head>
-<body>
-<div class="app">
-<header class="top">
-  <div class="brand"><div class="logo">◷</div><div><h1>mbpayday.online</h1><p>Track your hours. Check your pay.</p></div></div>
-  <div class="top-actions">
-    <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐ Theme</button>
-    <button id="quickExport">Export backup</button>
-    <button class="primary" id="headerClock">＋ Clock in</button>
-  </div>
-</header>
-<div class="layout">
-  <nav class="nav" aria-label="Main navigation">
-    <button class="active" data-page="home"><span class="ico">⌂</span>Overview</button>
-    <button data-page="timecard"><span class="ico">◷</span>Timecard</button>
-    <button data-page="pay"><span class="ico">$</span>Pay calculator</button>
-    <button data-page="paystubs"><span class="ico">▤</span>Paycheck check</button>
-    <button data-page="reports"><span class="ico">▥</span>Reports</button>
-    <button data-page="settings"><span class="ico">⚙</span>Settings & data</button>
-    <div class="privacy">🔒 Saved in this browser on this device. No account required.</div>
+<body class="mb-shell">
+<a class="skip" href="#main">Skip to content</a>
+<noscript><p class="noscript">mbpayday.online is a free timecard and paycheck tracker that runs in your browser. It needs JavaScript turned on.</p></noscript>
+
+<svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7"/><path d="M6 10v10h12V10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7h7M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15v2.5M8.5 18h.01M12 18h.01"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3z"/><path d="M9 8h6M9 11.5h6M9 15h3.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 16v-5M12 16V7M17 16v-8"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18.5" cy="12" r="1.2"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10 8.8v6.4l5-3.2z"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><rect x="9" y="9" width="6" height="6" rx="1"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M4 14v5.5h16V14M12 4v11M7.5 10.5 12 15l4.5-4.5"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M4 14v5.5h16V14M12 15V4M7.5 8.5 12 4l4.5 4.5"/></symbol>
+  <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16"/></symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6z"/><path d="M14 3.5v4h4M10 6h1.5M10 9h1.5M10 12h1.5M9.5 15h2.5v3h-2.5z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 3.5h4M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 12v7h14v-7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17v.01"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5"/><path d="M4 4v4.5h4.5M12 8v4l3 2"/></symbol>
+  <symbol id="i-job" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3.5 12.5h17"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+</svg>
+
+<aside class="mb-side" aria-label="App">
+  <a class="brand" href="./" data-home aria-label="mbpayday.online: go to Overview"><span class="logo"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="pdg1" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#C73874"/><stop offset=".55" stop-color="#BE185D"/><stop offset="1" stop-color="#98134A"/></linearGradient><clipPath id="pdc1"><rect width="64" height="64" rx="18"/></clipPath></defs><g clip-path="url(#pdc1)"><rect width="64" height="64" fill="url(#pdg1)"/><g transform="translate(3.2 3.6) scale(.9)"><rect x="29.75" y="13" width="4.5" height="6.5" fill="#fff"/><rect x="25.5" y="8.5" width="13" height="6.5" rx="3" fill="#F2B640"/><rect x="42.13" y="19.57" width="5.2" height="8.4" rx="2" fill="#fff" transform="rotate(45 44.73 23.77)"/><circle cx="32" cy="36.5" r="18" fill="#fff"/><path d="M32 25.6v3.2M32 44.6v3.2" stroke="#A8154F" stroke-width="3.4" stroke-linecap="round"/><path d="M37.2 31.4C36.2 29.7 34.3 28.8 32 28.8 29.2 28.8 27.1 30.3 27.1 32.5 27.1 37.4 37.1 35.2 37.1 40.4 37.1 42.7 34.9 44.4 32 44.4 29.5 44.4 27.6 43.4 26.7 41.6" fill="none" stroke="#A8154F" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></svg></span><span class="bt"><b>mbpayday<i class="tld">.online</i></b><span>Official Web App · v1.0</span></span></a>
+  <nav class="side-nav" id="sideNav" aria-label="Sections">
+    <button type="button" data-view="home" aria-current="page"><svg class="uic" aria-hidden="true"><use href="#i-home"/></svg><span>Overview</span></button>
+    <button type="button" data-view="timecard"><svg class="uic" aria-hidden="true"><use href="#i-clock"/></svg><span>Timecard</span><b class="count" data-count="shifts"></b></button>
+    <button type="button" data-view="pay"><svg class="uic" aria-hidden="true"><use href="#i-calc"/></svg><span>Pay calculator</span></button>
+    <button type="button" data-view="paystubs"><svg class="uic" aria-hidden="true"><use href="#i-receipt"/></svg><span>Paycheck check</span><b class="count" data-count="stubs"></b></button>
+    <button type="button" data-view="reports"><svg class="uic" aria-hidden="true"><use href="#i-chart"/></svg><span>Reports</span></button>
   </nav>
-  <main id="main"></main>
+  <nav class="side-nav side-end" aria-label="More">
+    <button type="button" data-view="settings"><svg class="uic" aria-hidden="true"><use href="#i-settings"/></svg><span>Settings</span></button>
+  </nav>
+</aside>
+
+<div class="mb-main">
+  <header class="page-bar">
+    <a class="brand phone-brand" href="./" data-home aria-label="mbpayday.online: go to Overview"><span class="logo"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="pdg2" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#C73874"/><stop offset=".55" stop-color="#BE185D"/><stop offset="1" stop-color="#98134A"/></linearGradient><clipPath id="pdc2"><rect width="64" height="64" rx="18"/></clipPath></defs><g clip-path="url(#pdc2)"><rect width="64" height="64" fill="url(#pdg2)"/><g transform="translate(3.2 3.6) scale(.9)"><rect x="29.75" y="13" width="4.5" height="6.5" fill="#fff"/><rect x="25.5" y="8.5" width="13" height="6.5" rx="3" fill="#F2B640"/><rect x="42.13" y="19.57" width="5.2" height="8.4" rx="2" fill="#fff" transform="rotate(45 44.73 23.77)"/><circle cx="32" cy="36.5" r="18" fill="#fff"/><path d="M32 25.6v3.2M32 44.6v3.2" stroke="#A8154F" stroke-width="3.4" stroke-linecap="round"/><path d="M37.2 31.4C36.2 29.7 34.3 28.8 32 28.8 29.2 28.8 27.1 30.3 27.1 32.5 27.1 37.4 37.1 35.2 37.1 40.4 37.1 42.7 34.9 44.4 32 44.4 29.5 44.4 27.6 43.4 26.7 41.6" fill="none" stroke="#A8154F" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></svg></span><span class="bt"><b>mbpayday<i class="tld">.online</i></b><span>Official Web App · v1.0</span></span></a>
+    <h1 class="page-title" id="pageTitle">Overview</h1>
+    <div class="actions">
+      <div class="searchbox hide-phone" id="searchWrap" hidden>
+        <svg class="uic" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="search" type="search" placeholder="Search shifts" aria-label="Search shifts (press / to focus)" autocomplete="off">
+      </div>
+      <button type="button" class="bk-chip hide-phone" id="bkChip" title="Save a backup now (Ctrl+S)"><svg class="uic" aria-hidden="true"><use href="#i-history"/></svg><span id="bkChipText">Never backed up</span></button>
+      <div class="menu-wrap">
+        <button type="button" class="btn sm" id="dataBtn" aria-haspopup="true" aria-expanded="false" aria-controls="dataMenu" title="Data: backup, import, export"><svg class="uic" aria-hidden="true"><use href="#i-data"/></svg><span class="lbl">Data</span><svg class="uic chev" aria-hidden="true"><use href="#i-chev"/></svg><span class="dot" id="dataDot" aria-hidden="true" hidden></span></button>
+        <div class="dm-panel" id="dataMenu" role="menu" aria-label="Data" hidden>
+          <button type="button" class="dm-item main" role="menuitem" data-act="saveNow"><svg class="uic" aria-hidden="true"><use href="#i-save"/></svg><span class="dm-t"><b>Save backup now</b><small id="saveNowSub">Choose where to save it the first time</small></span><kbd>Ctrl S</kbd></button>
+          <button type="button" class="dm-item" role="menuitem" data-act="exportJson"><svg class="uic" aria-hidden="true"><use href="#i-download"/></svg><span class="dm-t"><b>Export All (JSON)…</b><small>Full backup: jobs, shifts, paystubs and settings</small></span></button>
+          <button type="button" class="dm-item" role="menuitem" data-act="import"><svg class="uic" aria-hidden="true"><use href="#i-upload"/></svg><span class="dm-t"><b>Import Backup…</b><small>JSON or .zip backup, or a shifts CSV. You check it first</small></span></button>
+          <button type="button" class="dm-item" role="menuitem" data-act="exportPageCsv"><svg class="uic" aria-hidden="true"><use href="#i-sheet"/></svg><span class="dm-t"><b>Export This Page (CSV)…</b><small id="pageCsvSub">Shifts, for Excel or Sheets</small></span></button>
+          <button type="button" class="dm-item" role="menuitem" data-act="exportZip"><svg class="uic" aria-hidden="true"><use href="#i-zip"/></svg><span class="dm-t"><b>Export All (CSV, .zip)…</b><small>JSON backup plus shifts and paystubs CSV in one .zip</small></span></button>
+          <div class="dm-sep" role="separator"></div>
+          <button type="button" class="dm-item" role="menuitem" data-act="removeSample" id="dmRemoveSample" hidden><svg class="uic" aria-hidden="true"><use href="#i-x"/></svg><span class="dm-t"><b>Remove sample data</b><small>Deletes only the labeled sample records</small></span></button>
+          <button type="button" class="dm-item danger" role="menuitem" data-act="clearAll"><svg class="uic" aria-hidden="true"><use href="#i-trash"/></svg><span class="dm-t"><b>Clear all data…</b></span></button>
+          <div class="dm-foot">
+            <div id="bkStatusLine">Never backed up</div>
+            <div id="bkFileLine"></div>
+            <div>Your data is stored in this browser on this device. Clearing your browser data deletes it, so keep a backup.</div>
+          </div>
+        </div>
+      </div>
+      <input type="file" id="importFile" accept=".json,.csv,.zip,application/json,text/csv,application/zip" hidden>
+      <button type="button" class="themesw" id="themeBtn" role="switch" aria-checked="false" aria-label="Dark mode" title="Dark mode"><i></i></button>
+      <button type="button" class="btn primary sm" id="headerClock"><svg class="uic" aria-hidden="true"><use href="#i-play"/></svg><span id="headerClockText">Clock in</span><span id="headerClockAmt" class="amt"></span></button>
+    </div>
+  </header>
+
+  <div class="store-banner" id="storeBanner" role="alert" hidden>
+    <svg class="uic" aria-hidden="true"><use href="#i-warn"/></svg>
+    <p>Changes aren't being saved in this browser. Export a backup now.</p>
+    <button type="button" class="btn sm" data-act="exportJson">Export All (JSON)…</button>
+  </div>
+
+  <main class="wrap" id="main" tabindex="-1">
+    <div id="view"></div>
+    <div id="settingsTail" class="settings-tail" hidden>
+      <div data-mb-install data-app-name="Payday" data-note="Opens in its own window with its own icon. Works offline after the first visit."></div>
+      <div class="mb-about" role="group" aria-label="About this app">
+        <svg class="uic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.01"/></svg>
+        <div>
+          <b>mbpayday.online™</b>
+          <p>Version 1.0 · Oct 14, 2026</p>
+          <p class="mb-about-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://matthewbroyer.com/">More free apps at matthewbroyer.com</a></p>
+          <p class="mb-about-copy">© 2026 Matthew Broyer. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
-<div class="footer">mbpayday.online · Private by default · Export backups regularly</div>
-</div>
-<div id="toast" class="toast hidden" role="status"></div>
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-<script>
-(() => {
-'use strict';
-const KEY='workpay_local_v1';
-const THEME_KEY='mbpaystub_theme_v1';
-const $=(s,r=document)=>r.querySelector(s);
-const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
-const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
-const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
-const defaultState=()=>({version:1,settings:{jobName:'My job',hourlyRate:20,payFrequency:'biweekly',payday:5,weekStarts:1,otThreshold:40,otMultiplier:1.5,doubleThreshold:0,doubleMultiplier:2,shiftDiff:0,state:'NH',filing:'single',extraWithholding:0,pretaxDeductions:0,posttaxDeductions:0,workweekStart:'2026-01-05',currency:'USD',reminders:false},shifts:[],paystubs:[],jobs:[],activeShift:null,createdAt:new Date().toISOString()});
-let state;
-try{state=JSON.parse(localStorage.getItem(KEY))||defaultState()}catch(e){state=defaultState()}
-let page='home',editingId=null,editingJobId=null,toastTimer=null;
-// Jobs: each job keeps its own name, rate, differential and active/past status. Shifts reference jobs by name.
-function ensureJobs(){
- if(!Array.isArray(state.jobs))state.jobs=[];
- const s=state.settings,names=new Set(state.jobs.map(j=>j.name));
- const add=(name,rate,diff)=>{if(name&&!names.has(name)){state.jobs.push({id:uid(),name,rate:Number(rate)||0,differential:Number(diff)||0,active:true});names.add(name)}};
- if(!state.jobs.length)add(s.jobName||'My job',s.hourlyRate,s.shiftDiff);
- for(const sh of state.shifts)add(sh.job||s.jobName,sh.rate,sh.differential);
- for(const st of state.paystubs)add(st.employer,s.hourlyRate,0);
- for(const j of state.jobs){j.payFrequency??=s.payFrequency||'biweekly';j.weekStarts??=Number(s.weekStarts??1);if(j.anchor===undefined)j.anchor=s.workweekStart||'';j.payday??='';j.otThreshold??=Number(s.otThreshold??40);j.otMultiplier??=Number(s.otMultiplier??1.5)}
- if(!state.jobs.some(j=>j.name===s.jobName&&j.active))s.jobName=(state.jobs.find(j=>j.active)||state.jobs[0]).name;
-}
-ensureJobs();
-function jobByName(n){return state.jobs.find(j=>j.name===n)}
-function activeJobs(){return state.jobs.filter(j=>j.active)}
-function jobOptions(selected,includePast=true){return (includePast?state.jobs:activeJobs()).map(j=>`<option value="${esc(j.name)}" ${j.name===selected?'selected':''}>${esc(j.name)}${j.active?'':' (past job)'}</option>`).join('')}
-function syncDefaultJob(){const j=jobByName(state.settings.jobName);if(j){state.settings.hourlyRate=j.rate;state.settings.shiftDiff=j.differential||0}}
-function jobSelect(label,name,value,includePast=true){return `<div class="field"><label for="${name}">${label}</label><select id="${name}" name="${name}">${jobOptions(value,includePast)}</select></div>`}
-const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-const FREQ={weekly:'Weekly',biweekly:'Every two weeks',semimonthly:'Twice a month',monthly:'Monthly'};
-// Pay schedule + overtime rules for a job (falls back to the default job).
-function jobCfg(name){const j=jobByName(name)||jobByName(state.settings.jobName)||state.jobs[0]||{};const n=(v,d)=>v===''||v==null||isNaN(Number(v))?d:Number(v);return {name:j.name,payFrequency:j.payFrequency||'biweekly',weekStarts:n(j.weekStarts,1),anchor:j.anchor||'',payday:j.payday||'',otThreshold:Math.max(0,n(j.otThreshold,40)),otMultiplier:Math.max(1,n(j.otMultiplier,1.5))}}
-function nextPayday(name){const c=jobCfg(name);if(!c.payday||c.payFrequency==='semimonthly')return '';const t=today(),now=new Date(t+'T12:00:00'),p=new Date(c.payday+'T12:00:00');if(isNaN(p))return '';
- if(c.payFrequency==='monthly'){const day=p.getDate();for(let k=0;k<2;k++){const y=now.getFullYear(),mo=now.getMonth()+k,last=new Date(y,mo+1,0).getDate(),x=ymd(new Date(y,mo,Math.min(day,last)));if(x>=t)return x}return ''}
- const step=c.payFrequency==='weekly'?7:14,k=Math.ceil(Math.round((now-p)/86400000)/step);p.setDate(p.getDate()+k*step);return ymd(p)}
-// Each job's current pay period, its shifts in that period, and totals.
-function jobPeriods(date=today()){return state.jobs.map(j=>{const range=periodRange(date,j.name),shifts=state.shifts.filter(s=>(s.job||state.settings.jobName)===j.name&&inRange((s.start||'').slice(0,10),range.start,range.end));return {job:j,range,shifts,t:totals(shifts)}}).filter(p=>p.job.active||p.shifts.length)}
-function rangeLabel(jp){const set=[...new Set(jp.filter(p=>p.shifts.length||p.job.name===state.settings.jobName).map(p=>p.range.start+'|'+p.range.end))];if(set.length===1){const [a,b]=set[0].split('|');return `${dateFmt(a)} – ${dateFmt(b)}`}return 'Varies by job'}
-// Each employer withholds on its own paycheck, so take-home is estimated per job; deductions apply to the default job's check.
-function periodNet(jp){const out={net:0,fed:0,stateTax:0,fica:0};for(const p of jp){const isDef=p.job.name===state.settings.jobName;if(!p.t.gross&&!isDef)continue;const n=estimateNet(p.t.gross,p.job.name,isDef);out.net+=n.net;out.fed+=n.fed;out.stateTax+=n.stateTax;out.fica+=n.fica}return out}
-function applyTheme(theme){document.documentElement.dataset.theme=theme;try{localStorage.setItem(THEME_KEY,theme)}catch(e){}const b=$('#themeToggle');if(b){b.textContent=theme==='dark'?'☀ Light':'◐ Dark';b.setAttribute('aria-label',theme==='dark'?'Switch to light mode':'Switch to dark mode')}}
-try{applyTheme(localStorage.getItem(THEME_KEY)||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))}catch(e){applyTheme('light')}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){notify('Could not save: browser storage may be full. Export a backup.');}}
-function notify(msg){const t=$('#toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.add('hidden'),2800)}
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:state.settings.currency||'USD'}).format(Number(n)||0)}
-function dateFmt(s){if(!s)return '—';const d=new Date(s+'T12:00:00');return isNaN(d)?s:d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}
-function dtLocalValue(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
-function toDate(s){if(!s)return null;let d=new Date(s);return isNaN(d)?null:d}
-function hoursBetween(start,end){let a=toDate(start),b=toDate(end);return a&&b?Math.max(0,(b-a)/3600000):0}
-function shiftHours(s){let raw=hoursBetween(s.start,s.end||new Date());return Math.max(0,raw-(Number(s.unpaidBreak)||0)/60)}
-function weekStartDate(dateStr,starts=1){let d=new Date((dateStr||today())+'T12:00:00');let delta=(d.getDay()-Number(starts)+7)%7;d.setDate(d.getDate()-delta);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
-function weekEndFromStart(start){let d=new Date(start+'T12:00:00');d.setDate(d.getDate()+6);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
-function inRange(date,a,b){return date>=a&&date<=b}
-function periodRange(date=today(),jobName=state.settings.jobName){const c=jobCfg(jobName),d=new Date(date+'T12:00:00'),y=d.getFullYear(),m=d.getMonth();let start,end;
- if(c.payFrequency==='weekly'){start=weekStartDate(date,c.weekStarts);end=weekEndFromStart(start)}
- else if(c.payFrequency==='biweekly'){const first=state.shifts.filter(s=>(s.job||state.settings.jobName)===c.name&&s.start).map(s=>s.start.slice(0,10)).sort()[0];const a=new Date((c.anchor||weekStartDate(first||date,c.weekStarts))+'T12:00:00');a.setDate(a.getDate()+Math.floor(Math.round((d-a)/86400000)/14)*14);start=ymd(a);a.setDate(a.getDate()+13);end=ymd(a)}
- else if(c.payFrequency==='monthly'){start=ymd(new Date(y,m,1));end=ymd(new Date(y,m+1,0))}
- else if(d.getDate()<=15){start=ymd(new Date(y,m,1));end=ymd(new Date(y,m,15))}else{start=ymd(new Date(y,m,16));end=ymd(new Date(y,m+1,0))}
- return {start,end};
-}
-function shiftPay(s){const settings=state.settings,c=jobCfg(s.job||settings.jobName);
- const h=shiftHours(s),rate=Number(s.rate??settings.hourlyRate)||0,diff=Number(s.differential??settings.shiftDiff)||0;
- const otLimit=c.otThreshold,mult=c.otMultiplier;
- // Federal-style weekly OT model: overtime is counted per employer, so only shifts for the same job in the same workweek are grouped.
- const week=weekStartDate((s.start||'').slice(0,10),c.weekStarts),jobKey=s.job||settings.jobName;
- const group=state.shifts.filter(x=>(x.job||settings.jobName)===jobKey&&weekStartDate((x.start||'').slice(0,10),c.weekStarts)===week).slice().sort((a,b)=>a.start.localeCompare(b.start));
- let before=0, regular=0, overtime=0;
- for(const x of group){let hx=shiftHours(x),lim=Math.max(0,otLimit-before),reg=Math.min(hx,lim),ot=Math.max(0,hx-reg);if(x.id===s.id){regular=reg;overtime=ot;break}before+=hx}
- if(!s.id){regular=Math.min(h,Math.max(0,otLimit-before));overtime=Math.max(0,h-regular)}
- const base=regular*rate, otPay=overtime*rate*mult, differential=h*diff;
- return {hours:h,regular,overtime,base,otPay,differential,gross:base+otPay+differential};
-}
-function totals(shifts){let hours=0,reg=0,ot=0,gross=0;for(const s of shifts){let p=shiftPay(s);hours+=p.hours;reg+=p.regular;ot+=p.overtime;gross+=p.gross}return {hours,reg,ot,gross}}
-function allSorted(){return [...state.shifts].sort((a,b)=>(b.start||'').localeCompare(a.start||''))}
-function periodShifts(range=periodRange()){return state.shifts.filter(s=>inRange((s.start||'').slice(0,10),range.start,range.end))}
-function estimateNet(gross,jobName=state.settings.jobName,withDeductions=true){const s=state.settings,f=jobCfg(jobName).payFrequency,dd=withDeductions?1:0;const taxable=Math.max(0,gross-dd*(Number(s.pretaxDeductions)||0)); // coarse transparent estimate, not payroll-grade
- let fed=0,stateTax=0,fica=taxable*.0765;
- // Annualized rough progressive federal estimate using simplified 2025 single/other brackets, then per-period allocation.
- const annual=taxable*(f==='weekly'?52:f==='biweekly'?26:f==='semimonthly'?24:12);
- const single=s.filing==='married'?{std:31500,br:[23850,96750,206700,394600,501050,751600],rates:[.1,.12,.22,.24,.32,.35,.37]}:{std:15750,br:[11925,48475,103350,197300,250525,626350],rates:[.1,.12,.22,.24,.32,.35,.37]};
- let taxableAnnual=Math.max(0,annual-single.std),tax=0,prev=0;
- for(let i=0;i<single.br.length;i++){let amt=Math.max(0,Math.min(taxableAnnual,single.br[i])-prev);tax+=amt*single.rates[i];prev=single.br[i]}
- if(taxableAnnual>prev)tax+=(taxableAnnual-prev)*single.rates[single.rates.length-1];
- fed=tax/(f==='weekly'?52:f==='biweekly'?26:f==='semimonthly'?24:12);
- const stateRates={NH:0,AK:.02,FL:.02,NV:.02,SD:.02,TN:.02,TX:.02,WA:.02,WY:.02,CT:.045,MA:.05,ME:.05,NY:.055,NJ:.04,CA:.06,PA:.0307};
- stateTax=taxable*(stateRates[s.state]??.04);
- const net=Math.max(0,gross-fed-stateTax-fica-dd*((Number(s.extraWithholding)||0)+(Number(s.posttaxDeductions)||0)));
- return {net,fed,stateTax,fica,taxable,disclaimer:'Rough planning estimate. Simplified federal brackets and state-rate assumptions; not a payroll or tax filing calculation.'};
-}
-function fmtHours(h){return `${(Math.round(h*100)/100).toFixed(2)} h`}
-function field(label,name,value,type='text',opts={}){return `<div class="field ${opts.full?'full':''}"><label for="${name}">${label}</label>${type==='select'?`<select id="${name}" name="${name}">${opts.options.map(o=>`<option value="${esc(o[0])}" ${String(value)===String(o[0])?'selected':''}>${esc(o[1])}</option>`).join('')}</select>`:type==='textarea'?`<textarea id="${name}" name="${name}" ${opts.required?'required':''}>${esc(value)}</textarea>`:`<input id="${name}" name="${name}" type="${type}" value="${esc(value)}" ${opts.step?`step="${opts.step}"`:''} ${opts.min!==undefined?`min="${opts.min}"`:''} ${opts.required?'required':''} ${opts.placeholder?`placeholder="${esc(opts.placeholder)}"`:''}>`}</div>`}
-function pageHead(title,desc,actions=''){return `<div class="pagehead"><div><h2>${title}</h2><p>${desc}</p></div>${actions?`<div class="actions no-print">${actions}</div>`:''}</div>`}
-function stat(label,value,sub=''){return `<div class="card"><div class="statlabel">${label}</div><div class="stat">${value}</div><div class="sub">${sub}</div></div>`}
-function activeHours(){if(!state.activeShift)return 0;return shiftHours(state.activeShift)}
-function render(){ $$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#headerClock').textContent=state.activeShift?'■ Clock out':'＋ Clock in';const main=$('#main');main.innerHTML=({home:renderHome,timecard:renderTimecard,pay:renderPay,paystubs:renderPaystubs,reports:renderReports,settings:renderSettings}[page]||renderHome)();bindPage()}
-function renderHome(){
- const jp=jobPeriods(),ps=jp.flatMap(p=>p.shifts),t=totals(ps),net=periodNet(jp),rl=rangeLabel(jp),ws=jobCfg().weekStarts,np=nextPayday(state.settings.jobName),week=periodShifts({start:weekStartDate(today(),ws),end:weekEndFromStart(weekStartDate(today(),ws))}),wt=totals(week),recent=allSorted().slice(0,5);
- return `${pageHead('Overview','A clear view of your work and expected earnings.',`<button class="primary" data-action="newshift">＋ Add shift</button>`)}
- ${state.activeShift?`<div class="notice goodnotice"><strong>Shift in progress</strong> · Started ${new Date(state.activeShift.start).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}. ${esc(state.activeShift.job)} · Earned so far: <strong data-live-earn>${money(shiftPay(state.activeShift).gross)}</strong>. Remember to clock out when finished.</div>`:''}
- <div class="cards">${stat('Hours this pay period',fmtHours(t.hours),rl)}${stat('Estimated gross',money(t.gross),`${fmtHours(t.reg)} regular · ${fmtHours(t.ot)} overtime`)}${stat('Estimated take-home',money(net.net),'Planning estimate after modeled deductions')}${stat('Hours this week',fmtHours(wt.hours),`${fmtHours(wt.ot)} overtime hours`)}</div>
- <div class="grid2">
- <section class="panel"><div class="panelhead"><h3>Time clock</h3><span class="pill ${state.activeShift?'green':''}">${state.activeShift?'● In progress':'Ready'}</span></div>
- <div class="bigclock" id="liveClock">--:--</div><div class="muted">${dateFmt(today())} · ${esc(state.activeShift?state.activeShift.job:state.settings.jobName)}</div>
- ${state.activeShift?`<div class="divider"></div><div class="statlabel">Earned this shift</div><div class="bigclock" style="color:var(--brand)" data-live-earn>${money(shiftPay(state.activeShift).gross)}</div><div class="sub" id="liveRate">${money(Number(state.activeShift.rate)+(Number(state.activeShift.differential)||0))}/hr</div>`:activeJobs().length>1?`<div class="field sectiongap"><label for="clockJob">Clock in to</label><select id="clockJob">${jobOptions(state.settings.jobName,false)}</select></div>`:''}
- <div class="actions"><button class="primary" data-action="clock">${state.activeShift?'Clock out':'Clock in'}</button><button data-action="newshift">Enter past shift</button></div>
- <div class="divider"></div><div class="resultline"><span class="muted">Pay period</span><strong>${rl}</strong></div>${np?`<div class="resultline"><span class="muted">Next payday</span><strong>${dateFmt(np)}</strong></div>`:''}<div class="resultline"><span class="muted">Regular earnings</span><strong>${money(t.base||ps.reduce((n,s)=>n+shiftPay(s).base,0))}</strong></div><div class="resultline"><span class="muted">Overtime earnings</span><strong>${money(ps.reduce((n,s)=>n+shiftPay(s).otPay,0))}</strong></div>
- ${jp.filter(p=>p.shifts.length).length>1?`<div class="divider"></div><div class="statlabel">This period by job</div>${jp.filter(p=>p.shifts.length).map(p=>`<div class="resultline"><span>${esc(p.job.name)} <span class="sub">· ${fmtHours(p.t.hours)} · ${dateFmt(p.range.start)} – ${dateFmt(p.range.end)}</span></span><strong>${money(p.t.gross)}</strong></div>`).join('')}`:''}
- </section>
- <section class="panel"><div class="panelhead"><h3>Recent shifts</h3><button class="small" data-goto="timecard">View all</button></div>
- ${recent.length?`<div>${recent.map(s=>{const p=shiftPay(s);return `<div class="resultline"><div><strong>${dateFmt((s.start||'').slice(0,10))}</strong><div class="sub">${esc(s.job||state.settings.jobName)} · ${fmtHours(p.hours)}</div></div><strong>${money(p.gross)}</strong></div>`}).join('')}</div>`:`<div class="empty">No shifts yet.<br>Clock in or add your first shift to get started.</div>`}
- <div class="divider"></div><div class="panelhead"><h3>Paycheck forecast</h3><span class="pill amber">Estimate</span></div><div class="bigclock">${money(net.net)}</div><div class="sub">Estimated take-home for this pay period, before any unconfigured deductions.</div><div class="actions"><button data-goto="pay">Review calculation</button><button data-goto="paystubs">Check a paystub</button></div>
- </section></div>
- <section class="panel sectiongap"><div class="panelhead"><h3>Quick reminders</h3><span class="pill">Local only</span></div><div class="twocol"><div><strong>Keep records complete</strong><p class="sub">Review missing clock-outs and breaks before payday.</p></div><div><strong>Back up your data</strong><p class="sub">Export JSON or ZIP occasionally. Browser storage can be cleared by device settings.</p><button class="small" data-action="export">Export backup now</button></div></div></section>`;
-}
-function renderTimecard(){
- const jp=jobPeriods(),cur=totals(jp.flatMap(p=>p.shifts)),shifts=allSorted();let edit=editingId?(state.shifts.find(s=>s.id===editingId)||{}):null;
- return `${pageHead('Timecard','Record shifts, breaks, multiple rates, and corrections.',`<button class="primary" data-action="newshift">＋ Add shift</button>`)}
- <div class="cards">${stat('Total recorded',fmtHours(totals(shifts).hours),`${shifts.length} shift entries`)}${stat('This pay period',fmtHours(cur.hours),rangeLabel(jp))}${stat('Regular hours',fmtHours(cur.reg),'Calculated by workweek')}${stat('Overtime hours',fmtHours(cur.ot),'Using each job\'s overtime rule')}</div>
- ${edit?`<section class="panel sectiongap"><div class="panelhead"><h3>${edit.id?'Edit shift':'New shift'}</h3><button data-action="cancelEdit" class="small">Cancel</button></div>${shiftForm(edit)}</section>`:''}
- <section class="panel"><div class="panelhead"><h3>All shifts</h3><div class="actions" style="margin:0"><button class="small" data-action="exportCsv">Export CSV</button><button class="small" data-action="newshift">＋ Add shift</button></div></div>
- ${shifts.length?`<div class="tablewrap"><table><thead><tr><th>Date</th><th>Job</th><th>Start</th><th>End</th><th>Break</th><th>Hours</th><th>OT</th><th class="right">Gross</th><th>Actions</th></tr></thead><tbody>${shifts.map(s=>{let p=shiftPay(s);return `<tr><td>${dateFmt((s.start||'').slice(0,10))}</td><td>${esc(s.job||state.settings.jobName)}</td><td>${esc((s.start||'').replace('T',' '))}</td><td>${s.end?esc(s.end.replace('T',' ')):'<span class="pill green">Active</span>'}</td><td>${Number(s.unpaidBreak)||0}m</td><td>${fmtHours(p.hours)}</td><td>${fmtHours(p.overtime)}</td><td class="right">${money(p.gross)}</td><td><button class="small" data-action="editShift" data-id="${s.id}">Edit</button> <button class="small danger" data-action="deleteShift" data-id="${s.id}">Delete</button></td></tr>`}).join('')}</tbody></table></div>`:`<div class="empty">No shifts recorded. Add one manually or clock in from the overview.</div>`}
- <p class="hint">Overtime is allocated chronologically within each configured workweek. Confirm your employer's workweek and applicable pay rules.</p></section>`;
-}
-function shiftForm(s={}){const now=dtLocalValue();return `<form id="shiftForm"><input type="hidden" name="id" value="${esc(s.id||'')}"><div class="fieldgrid">
- ${field('Work date & start','start',s.start||now,'datetime-local',{required:true,step:'1'})}
- ${field('End date & time','end',s.end||now,'datetime-local',{step:'1'})}
- ${jobSelect('Job','job',s.job||state.settings.jobName)}
- ${field('Hourly rate ($)','rate',s.rate??(jobByName(s.job||state.settings.jobName)?.rate??state.settings.hourlyRate),'number',{step:'0.01',min:0,required:true})}
- ${field('Unpaid break (minutes)','unpaidBreak',s.unpaidBreak??0,'number',{step:'1',min:0})}
- ${field('Extra hourly differential ($)','differential',s.differential??(jobByName(s.job||state.settings.jobName)?.differential??state.settings.shiftDiff),'number',{step:'0.01',min:0})}
- ${field('Notes','notes',s.notes||'','textarea',{full:true})}
- </div><div class="formactions"><button type="button" data-action="cancelEdit">Cancel</button><button class="primary" type="submit">Save shift</button></div></form>`}
-function renderPay(){
- const jp=jobPeriods(),ps=jp.flatMap(p=>p.shifts),t=totals(ps),net=periodNet(jp),s=state.settings,dc=jobCfg();
- return `${pageHead('Pay calculator','Forecast earnings, overtime, deductions, and take-home pay.')}
- <div class="notice">Estimates only. Tax withholding is simplified and may differ from payroll. Verify overtime rules, regular-rate calculations, and state requirements for your situation.</div>
- <div class="cards">${stat('Gross this period',money(t.gross),rangeLabel(jp))}${stat('Estimated take-home',money(net.net),'After modeled deductions')}${stat('Regular / OT',`${fmtHours(t.reg)} / ${fmtHours(t.ot)}`,'Hours from recorded shifts')}${stat('Effective gross rate',money(t.hours?t.gross/t.hours:0),'Gross divided by all recorded hours')}</div>
- <div class="twocol"><section class="panel"><h3>Pay breakdown</h3><div class="resultline"><span>Regular earnings</span><strong>${money(ps.reduce((n,x)=>n+shiftPay(x).base,0))}</strong></div><div class="resultline"><span>Overtime premium earnings</span><strong>${money(ps.reduce((n,x)=>n+shiftPay(x).otPay,0))}</strong></div><div class="resultline"><span>Shift differentials</span><strong>${money(ps.reduce((n,x)=>n+shiftPay(x).differential,0))}</strong></div><div class="resultline"><strong>Estimated gross</strong><strong>${money(t.gross)}</strong></div><div class="divider"></div><div class="resultline"><span>Federal withholding (rough)</span><strong>−${money(net.fed)}</strong></div><div class="resultline"><span>State estimate (${esc(s.state)})</span><strong>−${money(net.stateTax)}</strong></div><div class="resultline"><span>Social Security + Medicare estimate</span><strong>−${money(net.fica)}</strong></div><div class="resultline"><span>Pre-tax deductions</span><strong>−${money(s.pretaxDeductions)}</strong></div><div class="resultline"><span>Extra withholding + post-tax deductions</span><strong>−${money((Number(s.extraWithholding)||0)+(Number(s.posttaxDeductions)||0))}</strong></div><div class="divider"></div><div class="resultline"><strong>Estimated take-home</strong><strong>${money(net.net)}</strong></div><p class="hint">Rough planning estimate, figured per job paycheck. Deductions apply to your default job's check. Not a payroll or tax filing calculation.</p></section>
- <section class="panel"><h3>What-if calculator</h3><form id="whatifForm"><div class="fieldgrid">${field('Additional regular hours','extraHours',5,'number',{min:0,step:.25})}${field('Additional overtime hours','extraOT',0,'number',{min:0,step:.25})}${field('Hourly rate ($)','whatRate',jobByName(s.jobName)?.rate??s.hourlyRate,'number',{min:0,step:.01})}${field('OT multiplier','whatMult',dc.otMultiplier,'number',{min:1,step:.1})}</div><div class="actions"><button class="primary" type="submit">Calculate scenario</button></div></form><div id="whatifResult" class="sectiongap"></div><div class="divider"></div><h3>Pay periods</h3>${jp.map(p=>{const c=jobCfg(p.job.name),np=nextPayday(p.job.name);return `<div class="resultline"><div><strong>${esc(p.job.name)}</strong><div class="sub">${FREQ[c.payFrequency]} · OT after ${c.otThreshold}h at ${c.otMultiplier}×${np?` · next payday ${dateFmt(np)}`:''}</div></div><strong>${dateFmt(p.range.start)} – ${dateFmt(p.range.end)}</strong></div>`}).join('')}<p class="hint">Each job's pay schedule and overtime rule are set in Settings → Jobs → Edit.</p></section></div>`;
-}
-function renderPaystubs(){
- let edit=editingId?(state.paystubs.find(x=>x.id===editingId)||{}):null;
- const rows=state.paystubs.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
- return `${pageHead('Paycheck check','Compare your records with actual paystub figures.',`<button class="primary" data-action="newstub">＋ Add paystub</button>`)}
- <div class="notice">A difference is a prompt to review your hours, pay period, rates, and deductions—not proof of an error or wage violation. Gross pay comparisons are generally more meaningful than comparing estimated net pay to a bank deposit.</div>
- ${edit?`<section class="panel sectiongap"><div class="panelhead"><h3>${edit.id?'Edit paystub':'Add paystub'}</h3><button class="small" data-action="cancelEdit">Cancel</button></div>${stubForm(edit)}</section>`:''}
- ${rows.map(stub=>{let range={start:stub.start,end:stub.end},t=totals(periodShifts(range).filter(s=>(s.job||state.settings.jobName)===stub.employer)),diff=Number(stub.actualGross)-t.gross;return `<section class="panel sectiongap"><div class="panelhead"><div><h3>${esc(stub.employer||'Paycheck')} · ${dateFmt(stub.date)}</h3><div class="sub">${dateFmt(stub.start)} – ${dateFmt(stub.end)}</div></div><span class="pill ${Math.abs(diff)<.02?'green':'amber'}">${Math.abs(diff)<.02?'Gross matches':`${diff<0?'Actual lower':'Actual higher'} by ${money(Math.abs(diff))}`}</span></div><div class="cards">${stat('Logged gross',money(t.gross),'From saved shift entries')}${stat('Actual gross',money(stub.actualGross),'Entered from paystub')}${stat('Gross difference',money(diff),'Actual minus logged estimate')}${stat('Actual net',money(stub.actualNet),'Deposit may differ from net pay')}</div>${stub.notes?`<p class="sub">${esc(stub.notes)}</p>`:''}<div class="actions"><button class="small" data-action="editStub" data-id="${stub.id}">Edit</button><button class="small danger" data-action="deleteStub" data-id="${stub.id}">Delete</button></div></section>`}).join('')}
- ${!rows.length?`<section class="panel"><div class="empty">No paystubs yet. Add the gross and net figures from a real paystub to compare them with your time records.</div></section>`:''}
- <section class="panel sectiongap"><h3>Paystub import</h3><p class="muted">This version supports manual entry and full-app CSV/JSON/ZIP backups. Direct PDF paystub extraction is not included; avoid uploading sensitive payroll documents to third-party converters.</p></section>`;
-}
-function stubForm(s={}){return `<form id="stubForm"><input type="hidden" name="id" value="${esc(s.id||'')}"><div class="fieldgrid">${jobSelect('Job this paycheck is from','employer',s.employer||state.settings.jobName)}${field('Pay date','date',s.date||today(),'date',{required:true})}${field('Period start','start',s.start||periodRange(today(),s.employer).start,'date',{required:true})}${field('Period end','end',s.end||periodRange(today(),s.employer).end,'date',{required:true})}${field('Actual gross pay ($)','actualGross',s.actualGross??0,'number',{step:.01,min:0,required:true})}${field('Actual net pay ($)','actualNet',s.actualNet??0,'number',{step:.01,min:0})}${field('Notes / questions','notes',s.notes||'','textarea',{full:true})}</div><div class="formactions"><button type="button" data-action="cancelEdit">Cancel</button><button class="primary" type="submit">Save paystub</button></div></form>`}
-function renderReports(){
- const all=allSorted(),month=today().slice(0,7),monthly=state.shifts.filter(s=>(s.start||'').slice(0,7)===month),mt=totals(monthly),year=today().slice(0,4),annual=state.shifts.filter(s=>(s.start||'').slice(0,4)===year),yt=totals(annual);
- const byJob={};state.shifts.forEach(s=>{let j=s.job||state.settings.jobName;byJob[j]??={hours:0,gross:0,shifts:0};let p=shiftPay(s);byJob[j].hours+=p.hours;byJob[j].gross+=p.gross;byJob[j].shifts++});
- return `${pageHead('Reports','Your work history, earnings trends, and exportable records.',`<button class="primary" data-action="exportCsv">Export shifts CSV</button>`)}
- <div class="cards">${stat('This month',money(mt.gross),`${fmtHours(mt.hours)} recorded hours`)}${stat('Year to date',money(yt.gross),`${fmtHours(yt.hours)} recorded hours`)}${stat('Total shifts',String(all.length),'All saved entries')}${stat('Paystubs logged',String(state.paystubs.length),'Actual checks recorded')}</div>
- <div class="twocol"><section class="panel"><h3>By job</h3>${Object.keys(byJob).length?Object.entries(byJob).map(([j,x])=>`<div class="resultline"><div><strong>${esc(j)}</strong><div class="sub">${x.shifts} shifts · ${fmtHours(x.hours)}</div></div><strong>${money(x.gross)}</strong></div>`).join(''):'<div class="empty">Your job summary will appear here.</div>'}</section>
- <section class="panel"><h3>Monthly earnings · this year</h3>${Array.from({length:12},(_,i)=>{let m=String(i+1).padStart(2,'0'),list=state.shifts.filter(s=>(s.start||'').slice(0,4)===year&&(s.start||'').slice(5,7)===m),gross=totals(list).gross,max=Math.max(1,...Array.from({length:12},(_,j)=>totals(state.shifts.filter(s=>(s.start||'').slice(0,4)===year&&(s.start||'').slice(5,7)===String(j+1).padStart(2,'0'))).gross));return `<div style="display:grid;grid-template-columns:38px 1fr 82px;gap:8px;align-items:center;margin:9px 0"><span class="sub">${new Date(Number(year),i,1).toLocaleDateString(undefined,{month:'short'})}</span><div class="progress" style="margin:0"><span style="width:${gross/max*100}%"></span></div><strong style="text-align:right;font-size:12px">${money(gross)}</strong></div>`}).join('')}</section></div>
- <section class="panel sectiongap"><div class="panelhead"><h3>Export records</h3><span class="pill">Device only</span></div><p class="muted">Download a portable copy for your records. CSV opens in spreadsheet software; JSON preserves all app data; ZIP bundles JSON and CSV files.</p><div class="actions"><button data-action="exportCsv">Shifts CSV</button><button data-action="exportJson">Full JSON backup</button><button class="primary" data-action="exportZip">Full ZIP backup</button></div></section>`;
-}
-function renderSettings(){
- const s=state.settings;
- const ej=editingJobId?(state.jobs.find(j=>j.id===editingJobId)||{}):null,ec=ej?(ej.id?jobCfg(ej.name):jobCfg()):null,isDef=ej&&ej.id&&ej.name===s.jobName;
- return `${pageHead('Settings & data','Your jobs, tax estimate, and backups.')}
- <section class="panel"><div class="panelhead"><h3>Jobs</h3><button class="small" data-action="newJob">＋ Add job</button></div>
- ${ej?`<form id="jobForm" class="panel" style="box-shadow:none;margin-bottom:12px"><input type="hidden" name="id" value="${esc(ej.id||'')}"><h3>${ej.id?'Edit job':'New job'}</h3><div class="fieldgrid">
- ${field('Job / employer name','jobName',ej.name||'','text',{required:true})}
- ${field('Hourly rate ($)','jobRate',ej.rate??s.hourlyRate,'number',{min:0,step:.01,required:true})}
- ${field('Shift differential ($/hour, optional)','jobDiff',ej.differential||0,'number',{min:0,step:.01})}
- ${field('Paid','jobFreq',ec.payFrequency,'select',{options:[['weekly','Weekly'],['biweekly','Every two weeks'],['semimonthly','Twice a month (1st–15th, 16th–end)'],['monthly','Monthly']]})}
- ${field('Workweek starts on','jobWeek',ec.weekStarts,'select',{options:[[0,'Sunday'],[1,'Monday'],[2,'Tuesday'],[3,'Wednesday'],[4,'Thursday'],[5,'Friday'],[6,'Saturday']]})}
- ${field('A recent payday (optional)','jobPayday',ej.id?ec.payday:'','date')}
- ${field('First day of a pay period (optional)','jobAnchor',ej.id?ec.anchor:'','date')}
- ${field('Overtime after (hours/week)','jobOt',ec.otThreshold,'number',{min:0,step:.25})}
- ${field('Overtime pay multiplier','jobOtMult',ec.otMultiplier,'number',{min:1,step:.1})}
- <label class="checkrow" style="grid-column:1/-1"><input type="checkbox" name="jobDefault" ${isDef?'checked disabled':''}> Make this my default job (used for clock-in)${isDef?' · to change it, mark another job as default':''}</label>
- </div><p class="hint" id="jobAnchorHint">The pay-period date tells the app which two weeks line up with your paychecks. Leave it blank and periods count from your first shift. The payday just shows your next payday; leave it blank to skip.</p><div class="formactions"><button type="button" data-action="cancelJob">Cancel</button><button class="primary" type="submit">Save job</button></div></form>`:''}
- ${state.jobs.map(j=>{const n=state.shifts.filter(x=>(x.job||s.jobName)===j.name).length,c=jobCfg(j.name);return `<div class="resultline"><div><strong>${esc(j.name)}</strong> ${j.active?(j.name===s.jobName?'<span class="pill green">Default</span>':''):'<span class="pill">Past job</span>'}<div class="sub">${money(j.rate)}/hr${Number(j.differential)?` + ${money(j.differential)} diff`:''} · ${FREQ[c.payFrequency]} · OT after ${c.otThreshold}h · ${n} shift${n===1?'':'s'}</div></div><div class="actions" style="margin:0"><button class="small" data-action="editJob" data-id="${j.id}">Edit</button>${j.active?`<button class="small" data-action="toggleJob" data-id="${j.id}">Mark as past job</button>`:`<button class="small" data-action="toggleJob" data-id="${j.id}">Reactivate</button>`}${n?'':`<button class="small danger" data-action="deleteJob" data-id="${j.id}">Delete</button>`}</div></div>`}).join('')}
- <p class="hint">Leaving a job? Mark it as past instead of deleting it: its shifts and paystubs stay in your history. Overtime is counted separately for each job, since each employer tracks its own week.</p></section>
- <form id="settingsForm">
- <section class="panel sectiongap"><h3>Take-home pay estimate</h3><div class="fieldgrid">
- <div class="field"><label for="state">State you pay tax in</label><select id="state" name="state">${['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'].map(x=>`<option ${s.state===x?'selected':''}>${x}</option>`).join('')}</select></div>
- ${field('Filing status','filing',s.filing,'select',{options:[['single','Single / other'],['married','Married filing jointly (rough model)']]})}
- ${field('Currency','currency',s.currency,'select',{options:[['USD','USD — US dollar'],['CAD','CAD — Canadian dollar'],['GBP','GBP — British pound'],['EUR','EUR — euro']]})}
- ${field('Extra withholding per paycheck ($)','extraWithholding',s.extraWithholding,'number',{min:0,step:.01})}
- ${field('Pre-tax deductions per paycheck ($)','pretaxDeductions',s.pretaxDeductions,'number',{min:0,step:.01})}
- ${field('Post-tax deductions per paycheck ($)','posttaxDeductions',s.posttaxDeductions,'number',{min:0,step:.01})}
- </div><p class="hint">Tax estimates are simplified and are not payroll-grade. State withholding varies substantially; some states and localities need different treatment.</p></section>
- <div class="formactions"><button class="primary" type="submit">Save settings</button></div></form>
- <section class="panel sectiongap"><h3>Try sample data</h3><p class="muted">Add realistic example shifts and a sample paystub to explore the reports and paycheck comparison. Sample records are clearly labeled and can be deleted like any other entry. Existing records are kept.</p><div class="actions"><button data-action="demoData">＋ Add demo data</button></div></section>
- <section class="panel sectiongap"><h3>Data management</h3><p class="muted">Your shifts, paystubs, and settings are stored in this browser's local storage. Nothing is sent to a mbpayday.online server. Clearing browser data can erase records; export backups regularly.</p>
- <div class="actions"><button data-action="exportJson">Export JSON</button><button data-action="exportCsv">Export shifts CSV</button><button class="primary" data-action="exportZip">Export ZIP bundle</button><label class="filebtn"><button type="button">Import backup…</button><input id="importFile" type="file" accept=".json,.csv,.zip,application/json,text/csv,application/zip"></label><button class="danger" data-action="reset">Erase all local data</button></div>
- <p class="hint">Importing a JSON/ZIP backup replaces the current dataset after confirmation. CSV import adds shift rows. ZIP import requires JSZip to be available; this single-file app loads it from a CDN.</p></section>`;
-}
-function bindPage(){
- $$('[data-goto]').forEach(b=>b.onclick=()=>{page=b.dataset.goto;editingId=null;render()});
- $$('[data-action]').forEach(b=>b.onclick=()=>action(b.dataset.action,b.dataset.id));
- const sf=$('#shiftForm');if(sf)sf.onsubmit=e=>{e.preventDefault();const f=new FormData(sf),id=f.get('id')||uid(),obj={id,start:f.get('start'),end:f.get('end')||null,job:f.get('job'),rate:Number(f.get('rate')),unpaidBreak:Number(f.get('unpaidBreak'))||0,differential:Number(f.get('differential'))||0,notes:f.get('notes')||''};if(obj.end&&new Date(obj.end)<new Date(obj.start)){notify('End time must be after start time.');return}let idx=state.shifts.findIndex(x=>x.id===id);if(idx>=0)state.shifts[idx]=obj;else state.shifts.push(obj);if(state.activeShift?.id===id)state.activeShift=null;editingId=null;save();notify('Shift saved');render()};
- const stf=$('#stubForm');if(stf)stf.onsubmit=e=>{e.preventDefault();const f=new FormData(stf),id=f.get('id')||uid(),obj={id,employer:f.get('employer'),date:f.get('date'),start:f.get('start'),end:f.get('end'),actualGross:Number(f.get('actualGross'))||0,actualNet:Number(f.get('actualNet'))||0,notes:f.get('notes')||''};let i=state.paystubs.findIndex(x=>x.id===id);if(i>=0)state.paystubs[i]=obj;else state.paystubs.push(obj);editingId=null;save();notify('Paystub saved');render()};
- const setf=$('#settingsForm');if(setf)setf.onsubmit=e=>{e.preventDefault();const f=new FormData(setf);for(const k of ['extraWithholding','pretaxDeductions','posttaxDeductions'])state.settings[k]=Number(f.get(k))||0;for(const k of ['state','filing','currency'])state.settings[k]=f.get(k);save();notify('Settings saved');render()};
- const jf=$('#jobForm');if(jf)jf.onsubmit=e=>{e.preventDefault();const f=new FormData(jf),id=f.get('id'),name=String(f.get('jobName')||'').trim(),rate=Number(f.get('jobRate'))||0,differential=Number(f.get('jobDiff'))||0,sched={payFrequency:f.get('jobFreq'),weekStarts:Number(f.get('jobWeek'))||0,payday:f.get('jobPayday')||'',anchor:f.get('jobFreq')==='biweekly'?(f.get('jobAnchor')||''):'',otThreshold:f.get('jobOt')===''?40:Number(f.get('jobOt')),otMultiplier:Math.max(1,Number(f.get('jobOtMult'))||1.5)},makeDef=!!f.get('jobDefault');if(!name){notify('Give the job a name.');return}if(state.jobs.some(j=>j.name===name&&j.id!==id)){notify('You already have a job with that name.');return}
-  const existing=state.jobs.find(j=>j.id===id);
-  if(existing){const old=existing.name;if(old!==name){state.shifts.forEach(x=>{if((x.job||state.settings.jobName)===old)x.job=name});state.paystubs.forEach(x=>{if(x.employer===old)x.employer=name});if(state.activeShift&&state.activeShift.job===old)state.activeShift.job=name;if(state.settings.jobName===old)state.settings.jobName=name}Object.assign(existing,{name,rate,differential},sched);if(makeDef){existing.active=true;state.settings.jobName=name}}
-  else{state.jobs.push({id:uid(),name,rate,differential,active:true,...sched});if(makeDef||activeJobs().length===1)state.settings.jobName=name}
-  editingJobId=null;syncDefaultJob();save();notify('Job saved');render()};
- const jfq=$('#jobFreq');if(jfq){const vis=()=>{const v=jfq.value;$('#jobAnchor').closest('.field').classList.toggle('hidden',v!=='biweekly');$('#jobPayday').closest('.field').classList.toggle('hidden',v==='semimonthly')};jfq.onchange=vis;vis()}
- const se=$('#stubForm [name=employer]');if(se&&!$('#stubForm [name=id]').value)se.onchange=()=>{const r=periodRange(today(),se.value);$('#stubForm [name=start]').value=r.start;$('#stubForm [name=end]').value=r.end};
- const sj=$('#shiftForm [name=job]');if(sj)sj.onchange=()=>{const j=jobByName(sj.value);if(j){$('#shiftForm [name=rate]').value=j.rate;$('#shiftForm [name=differential]').value=j.differential||0}};
- const wf=$('#whatifForm');if(wf)wf.onsubmit=e=>{e.preventDefault();const f=new FormData(wf),rate=Number(f.get('whatRate'))||0,reg=Number(f.get('extraHours'))||0,ot=Number(f.get('extraOT'))||0,gross=reg*rate+ot*rate*(Number(f.get('whatMult'))||1.5),net=estimateNet(gross);$('#whatifResult').innerHTML=`<div class="callout">This scenario adds <strong>${money(gross)}</strong> gross, with a rough estimated take-home of <strong>${money(net.net)}</strong>. Net estimate is approximate and should not be treated as a payroll quote.</div>`};
- const imp=$('#importFile');if(imp)imp.onchange=async()=>{if(imp.files[0])await importFile(imp.files[0]);imp.value=''};
-}
-function action(a,id){
- if(a==='clock'){toggleClock();return}
- if(a==='demoData'){loadDemoData();return}
- if(a==='newJob'){editingJobId='new';render();return}
- if(a==='editJob'){editingJobId=id;render();return}
- if(a==='cancelJob'){editingJobId=null;render();return}
- if(a==='toggleJob'){const j=state.jobs.find(x=>x.id===id);if(!j)return;if(j.active&&activeJobs().length===1){notify('Add your new job first, then mark this one as past.');return}if(j.active&&state.activeShift?.job===j.name){notify('Clock out of this job first.');return}j.active=!j.active;if(!j.active&&state.settings.jobName===j.name)state.settings.jobName=activeJobs()[0].name;syncDefaultJob();save();render();notify(j.active?'Job reactivated':'Marked as past job. History kept.');return}
- if(a==='deleteJob'){const j=state.jobs.find(x=>x.id===id);if(!j)return;if(j.active&&activeJobs().length===1){notify('You need at least one active job.');return}if(confirm(`Delete "${j.name}"? It has no shifts.`)){state.jobs=state.jobs.filter(x=>x.id!==id);ensureJobs();syncDefaultJob();save();render()}return}
- if(a==='newshift'){editingId='new';page='timecard';render();setTimeout(()=>$('#shiftForm')?.scrollIntoView({behavior:'smooth',block:'start'}),20);return}
- if(a==='cancelEdit'){editingId=null;render();return}
- if(a==='editShift'){editingId=id;page='timecard';render();return}
- if(a==='deleteShift'){if(confirm('Delete this shift permanently from this device?')){state.shifts=state.shifts.filter(s=>s.id!==id);save();render();notify('Shift deleted')}return}
- if(a==='newstub'){editingId='new';render();return}
- if(a==='editStub'){editingId=id;render();return}
- if(a==='deleteStub'){if(confirm('Delete this paystub entry?')){state.paystubs=state.paystubs.filter(s=>s.id!==id);save();render()}return}
- if(a==='export'||a==='exportJson'){exportJSON();return}
- if(a==='exportCsv'){exportCSV();return}
- if(a==='exportZip'){exportZIP();return}
- if(a==='reset'){if(confirm('This permanently erases all mbpayday.online data saved in this browser. Export a backup first if you may need it. Continue?')){state=defaultState();save();editingId=null;page='home';render();notify('Local data erased')}return}
-}
-function loadDemoData(){
- const base=new Date();base.setDate(base.getDate()-6);
- const dates=[];for(let i=0;i<6;i++){const d=new Date(base);d.setDate(d.getDate()+i);dates.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`)}
- const demoTag='DEMO · Sample records';
- const examples=dates.map((day,i)=>{const startHour=i===5?8:8;const hours=i===5?5.5:8;const start=new Date(`${day}T${String(startHour).padStart(2,'0')}:00:00`);const end=new Date(start.getTime()+hours*3600000);const local=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;return{id:uid(),start:local(start),end:local(end),job:'Demo job',rate:22.5,unpaidBreak:i===5?0:30,differential:0.75,notes:demoTag}});
- state.shifts.push(...examples);
- const start=new Date();start.setDate(start.getDate()-13);const fmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
- const gross=totals(examples).gross;
- state.paystubs.push({id:uid(),employer:'Demo job',date:today(),start:fmt(start),end:today(),actualGross:Math.round((gross+12.5)*100)/100,actualNet:Math.round(gross*.78*100)/100,notes:`${demoTag}. Intentional gross difference added to demonstrate the comparison feature.`});
- ensureJobs();
- save();page='home';editingId=null;render();notify('Demo records added. Existing records were kept.');
-}
-function toggleClock(){
- if(state.activeShift){const id=state.activeShift.id,shift=state.shifts.find(s=>s.id===id);if(shift){const n=new Date();shift.end=dtLocalValue(n)+':'+String(n.getSeconds()).padStart(2,'0');}state.activeShift=null;save();notify('Clocked out. Shift saved.');render();return}
- const pick=$('#clockJob')?.value,job=jobByName(pick)||jobByName(state.settings.jobName)||activeJobs()[0];
- const n=new Date(),s={id:uid(),start:dtLocalValue(n)+':'+String(n.getSeconds()).padStart(2,'0'),end:null,job:job.name,rate:Number(job.rate)||0,unpaidBreak:0,differential:Number(job.differential)||0,notes:''};state.shifts.push(s);state.activeShift=s;save();notify('Clocked in');render()
-}
-function download(name,blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200)}
-function exportJSON(){const payload={...state,exportedAt:new Date().toISOString(),app:'mbpayday.online'};download(`mbpayday-backup-${today()}.json`,new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));notify('JSON backup exported')}
-function csvEscape(v){let s=String(v??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
-function exportCSV(){const cols=['id','start','end','job','rate','unpaidBreak','differential','notes'];let lines=[cols.join(',')];state.shifts.forEach(s=>lines.push(cols.map(k=>csvEscape(s[k])).join(',')));download(`mbpayday-shifts-${today()}.csv`,new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));notify('Shifts CSV exported')}
-async function exportZIP(){const data={...state,exportedAt:new Date().toISOString(),app:'mbpayday.online'};if(!window.JSZip){notify('ZIP library unavailable. Use JSON export or reconnect to load ZIP support.');return}try{const zip=new JSZip();zip.file('mbpayday-backup.json',JSON.stringify(data,null,2));const cols=['id','start','end','job','rate','unpaidBreak','differential','notes'];zip.file('shifts.csv','\ufeff'+[cols.join(','),...state.shifts.map(s=>cols.map(k=>csvEscape(s[k])).join(','))].join('\r\n'));zip.file('paystubs.csv','\ufeff'+[['id','employer','date','start','end','actualGross','actualNet','notes'].join(','),...state.paystubs.map(s=>['id','employer','date','start','end','actualGross','actualNet','notes'].map(k=>csvEscape(s[k])).join(','))].join('\r\n'));zip.file('README.txt','mbpayday.online local backup. JSON contains all app data. CSV files are for spreadsheet use. Keep this file private.');const blob=await zip.generateAsync({type:'blob'});download(`mbpayday-backup-${today()}.zip`,blob);notify('ZIP backup exported')}catch(e){notify('ZIP export failed. Try JSON export instead.')}}
-function parseCSV(text){let rows=[],row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){let c=text[i];if(quoted){if(c==='"'&&text[i+1]==='"'){cell+='"';i++}else if(c==='"')quoted=false;else cell+=c}else if(c==='"')quoted=true;else if(c===','){row.push(cell);cell=''}else if(c==='\n'){row.push(cell.replace(/\r$/,''));rows.push(row);row=[];cell=''}else cell+=c}if(cell.length||row.length){row.push(cell.replace(/\r$/,''));rows.push(row)}if(rows.length<2)return [];const headers=rows.shift().map(x=>x.trim());return rows.filter(r=>r.some(x=>x!=='')).map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]??''])))}
-async function importFile(file){const ext=file.name.toLowerCase().split('.').pop();try{if(ext==='json'){const obj=JSON.parse(await file.text());applyBackup(obj);return}if(ext==='csv'){const rows=parseCSV(await file.text());if(!rows.length)throw Error('No CSV rows found');const normalized=rows.map(x=>({id:x.id||uid(),start:x.start,end:x.end||null,job:x.job||state.settings.jobName,rate:Number(x.rate)||Number(state.settings.hourlyRate),unpaidBreak:Number(x.unpaidBreak)||0,differential:Number(x.differential)||0,notes:x.notes||''}));if(!normalized.every(s=>s.start))throw Error('CSV must include a start column with date/time values');state.shifts.push(...normalized);ensureJobs();save();render();notify(`Imported ${normalized.length} shifts`);return}if(ext==='zip'){if(!window.JSZip)throw Error('ZIP support is unavailable while offline. Import the JSON file instead.');const zip=await JSZip.loadAsync(file);const jf=zip.file('mbpayday-backup.json')||zip.file('mbpaystub-backup.json');if(!jf)throw Error('ZIP does not contain mbpayday-backup.json');applyBackup(JSON.parse(await jf.async('text')));return}throw Error('Choose a JSON, CSV, or ZIP file')}catch(e){notify('Import failed: '+e.message)}}
-function applyBackup(obj){if(!obj||!Array.isArray(obj.shifts)||!obj.settings)throw Error('File does not look like an mbpayday.online JSON backup');if(!confirm(`Replace current local data with ${obj.shifts.length} shift(s) and ${(obj.paystubs||[]).length} paystub(s)? Export a backup first if needed.`))return;state={...defaultState(),...obj,settings:{...defaultState().settings,...obj.settings},shifts:obj.shifts,paystubs:Array.isArray(obj.paystubs)?obj.paystubs:[],jobs:Array.isArray(obj.jobs)?obj.jobs:[],activeShift:obj.activeShift||null};ensureJobs();save();editingId=null;page='home';render();notify('Backup imported')}
-function tick(){const el=$('#liveClock');if(el){el.textContent=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit',second:'2-digit'});if(state.activeShift){const sub=el.nextElementSibling;if(sub)sub.textContent=`${dateFmt(today())} · ${state.activeShift.job} · Shift elapsed ${fmtHours(activeHours())}`}}
- if(state.activeShift){const p=shiftPay(state.activeShift),a=state.activeShift,base=(Number(a.rate)||0),diff=Number(a.differential)||0;
-  $$('[data-live-earn]').forEach(x=>x.textContent=money(p.gross));
-  const r=$('#liveRate');if(r)r.textContent=p.overtime>0?`Overtime: ${money(base*jobCfg(a.job).otMultiplier+diff)}/hr`:`${money(base+diff)}/hr`;
-  const hb=$('#headerClock');if(hb)hb.textContent=`■ Clock out · ${money(p.gross)}`}}
-$$('.nav button').forEach(b=>b.addEventListener('click',()=>{page=b.dataset.page;editingId=null;render()}));
-$('#quickExport').onclick=exportJSON;$('#headerClock').onclick=toggleClock;$('#themeToggle').onclick=()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
-render();tick();setInterval(tick,1000);
-})();
-</script>
+
+<nav class="bnav" id="bnav" aria-label="Sections">
+  <button type="button" data-view="home" aria-current="page"><svg class="uic" aria-hidden="true"><use href="#i-home"/></svg><span>Overview</span></button>
+  <button type="button" data-view="timecard"><svg class="uic" aria-hidden="true"><use href="#i-clock"/></svg><span>Timecard</span></button>
+  <button type="button" data-view="pay"><svg class="uic" aria-hidden="true"><use href="#i-calc"/></svg><span>Pay</span></button>
+  <button type="button" data-view="paystubs"><svg class="uic" aria-hidden="true"><use href="#i-receipt"/></svg><span>Paychecks</span></button>
+  <button type="button" id="moreBtn" aria-haspopup="dialog" aria-controls="moreSheet"><svg class="uic" aria-hidden="true"><use href="#i-more"/></svg><span>More</span></button>
+</nav>
+
+<dialog class="dlg sheet" id="moreSheet" aria-labelledby="moreTitle">
+  <div class="dlg-head"><h2 id="moreTitle">More</h2><button type="button" class="btn ghost sm" data-close aria-label="Close">Close</button></div>
+  <div class="more-list">
+    <button type="button" data-view="reports"><svg class="uic" aria-hidden="true"><use href="#i-chart"/></svg><span>Reports</span></button>
+    <button type="button" data-view="settings"><svg class="uic" aria-hidden="true"><use href="#i-settings"/></svg><span>Settings</span></button>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="welcomeDlg" aria-labelledby="welcomeTitle">
+  <div class="welcome-art"><span class="logo lg" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="pdg3" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="54" y2="64"><stop offset="0" stop-color="#C73874"/><stop offset=".55" stop-color="#BE185D"/><stop offset="1" stop-color="#98134A"/></linearGradient><clipPath id="pdc3"><rect width="64" height="64" rx="18"/></clipPath></defs><g clip-path="url(#pdc3)"><rect width="64" height="64" fill="url(#pdg3)"/><g transform="translate(3.2 3.6) scale(.9)"><rect x="29.75" y="13" width="4.5" height="6.5" fill="#fff"/><rect x="25.5" y="8.5" width="13" height="6.5" rx="3" fill="#F2B640"/><rect x="42.13" y="19.57" width="5.2" height="8.4" rx="2" fill="#fff" transform="rotate(45 44.73 23.77)"/><circle cx="32" cy="36.5" r="18" fill="#fff"/><path d="M32 25.6v3.2M32 44.6v3.2" stroke="#A8154F" stroke-width="3.4" stroke-linecap="round"/><path d="M37.2 31.4C36.2 29.7 34.3 28.8 32 28.8 29.2 28.8 27.1 30.3 27.1 32.5 27.1 37.4 37.1 35.2 37.1 40.4 37.1 42.7 34.9 44.4 32 44.4 29.5 44.4 27.6 43.4 26.7 41.6" fill="none" stroke="#A8154F" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></svg></span></div>
+  <h2 id="welcomeTitle">Welcome to mbpayday.online</h2>
+  <p class="dlg-sub">Track your hours and check your pay. Clock in and out or enter past shifts, and the app estimates overtime, gross pay and take-home pay for each pay period. Then compare it with your real paystubs.</p>
+  <ul class="welcome-list">
+    <li>Everything is saved in this browser on this device. No account.</li>
+    <li>Pay and tax figures are rough planning estimates, not payroll or tax advice.</li>
+  </ul>
+  <div class="field-row">
+    <span id="welcomeThemeLbl" class="lbl-sm">Appearance</span>
+    <div class="seg" role="group" aria-labelledby="welcomeThemeLbl">
+      <button type="button" class="chip" data-theme-pick="light" aria-pressed="true"><svg class="uic" aria-hidden="true"><use href="#i-sun"/></svg>Light</button>
+      <button type="button" class="chip" data-theme-pick="dark" aria-pressed="false"><svg class="uic" aria-hidden="true"><use href="#i-moon"/></svg>Dark</button>
+    </div>
+  </div>
+  <p class="hint">Have a backup file? <button type="button" class="linkbtn" id="welcomeImport">Import it now</button></p>
+  <div class="dlg-actions">
+    <button type="button" class="btn" id="welcomeSample">Try it with sample data</button>
+    <button type="button" class="btn primary" id="welcomeStart">Get started</button>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="confirmDlg" aria-labelledby="confirmTitle">
+  <h2 id="confirmTitle">Are you sure?</h2>
+  <p class="dlg-sub" id="confirmBody"></p>
+  <p class="hint" id="confirmBackupRow" hidden><button type="button" class="linkbtn" id="confirmBackup">Save backup first</button></p>
+  <div class="dlg-actions">
+    <button type="button" class="btn" id="confirmCancel">Cancel</button>
+    <button type="button" class="btn danger solid" id="confirmOk">Delete</button>
+  </div>
+</dialog>
+
+<dialog class="dlg" id="importDlg" aria-labelledby="importTitle">
+  <h2 id="importTitle">Import backup</h2>
+  <p class="dlg-sub" id="importFileName"></p>
+  <ul class="import-sum" id="importSummary"></ul>
+  <p class="dlg-sub" id="importNote"></p>
+  <p class="hint" id="importBackupRow"><button type="button" class="linkbtn" id="importBackup">Save backup first</button></p>
+  <div class="dlg-actions">
+    <button type="button" class="btn" id="importCancel">Cancel</button>
+    <button type="button" class="btn danger" id="importReplace">Replace</button>
+    <button type="button" class="btn primary" id="importMerge">Merge</button>
+  </div>
+</dialog>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<template id="artBanner"><svg class="cu-art" viewBox="0 0 640 136" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false"><circle class="b" cx="560" cy="46" r="26"/><path class="s" d="M210 150 C315 80 525 80 630 150Z"/><path class="m" d="M410 150 C485 66 635 66 710 150Z"/><path class="d" d="M530 150 C585 90 695 90 750 150Z"/><path class="n" transform="translate(470 98) rotate(-64) scale(0.5)" d="M0 0 C 20 -34 66 -40 96 -6 C 70 28 22 34 0 0Z"/><path class="d" transform="translate(480 98) rotate(-116) scale(0.4)" d="M0 0 C 20 -34 66 -40 96 -6 C 70 28 22 34 0 0Z"/><circle class="r" cx="360" cy="44" r="6"/></svg></template>
+<template id="artEmpty"><svg class="cu-art inline sm" viewBox="0 0 160 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path class="s" transform="translate(80 98)" d="M-48 2.2 C-48 -15.8 26.4 -16.5 48 -1.5 C49 14.2 -26.4 16.5 -48 2.2Z"/><path class="sd" d="M80 92 C75.6 71.8 83.3 54 80 41.4"/><path class="d" transform="translate(80 41.4) rotate(-38) scale(0.5)" d="M0 0 C 20 -34 66 -40 96 -6 C 70 28 22 34 0 0Z"/><path class="m" transform="translate(80 52.5) rotate(-150) scale(0.4)" d="M0 0 C 20 -34 66 -40 96 -6 C 70 28 22 34 0 0Z"/><circle class="b" cx="122" cy="40" r="7"/><path class="m" transform="translate(40 104)" d="M-13 0.9 C-13 -6.3 7.2 -6.6 13 -0.6 C13.3 5.7 -7.2 6.6 -13 0.9Z"/></svg></template>
+<template id="shareArt"><svg class="cu-art" viewBox="0 0 640 136" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false"><circle class="b" cx="560" cy="46" r="26"/><path class="s" d="M210 150 C315 80 525 80 630 150Z"/><path class="m" d="M410 150 C485 66 635 66 710 150Z"/><path class="d" d="M530 150 C585 90 695 90 750 150Z"/><path class="n" transform="translate(470 98) rotate(-64) scale(0.5)" d="M0 0 C 20 -34 66 -40 96 -6 C 70 28 22 34 0 0Z"/><path class="d" transform="translate(480 98) rotate(-116) scale(0.4)" d="M0 0 C 20 -34 66 -40 96 -6 C 70 28 22 34 0 0Z"/><circle class="r" cx="360" cy="44" r="6"/></svg></template>
+
+<script src="mb-title.js"></script>
+<script src="mb-install.js"></script>
+<script src="mb-share.js"></script>
+<script src="vendor/jszip.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
